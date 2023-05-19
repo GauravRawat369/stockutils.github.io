@@ -65,6 +65,10 @@ const Analytics = () => {
     fetchStock();
   }, [symbol, inputValue]);
 
+   if(!stockChartXValues.length)
+   {
+      console.log("data no availabe:")
+   }
   // if (!stockChartXValues.length) {
   //   return (
   //     <div className="loading-div">
@@ -113,7 +117,9 @@ const Analytics = () => {
         />
       )}
       {/* <Searchsymbol/> */}
-      ({startDate != undefined && endDate != undefined})&&(<Fetchnews startDate={startDate} endDate={endDate} />)
+      {startDate != undefined && endDate != undefined?(<Fetchnews startDate={startDate} endDate={endDate} />)
+      : <h2>pls select the dates</h2>}
+
     </div>
   );
 };
