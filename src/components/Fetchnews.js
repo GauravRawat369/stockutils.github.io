@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 function FetchNews(props) {
+  /* `const [articles, setArticles] = useState([]);` initializes a state variable `articles` with an
+  empty array and a function `setArticles` to update the state variable. */
   const [articles, setArticles] = useState([]);
   const [pending, setpending] = useState([true]);
+/* `useEffect` is a hook in React that allows you to perform side effects in function components. In
+this code, `useEffect` is used to fetch news articles from the New York Times API based on the
+`startDate` and `endDate` props passed to the component. */
   useEffect(() => {
     function execute() {
       const { startDate, endDate } = props;
-        // const startDate = "20210101";
-        // const endDate = "20210131";
         console.log("inside news start date ",startDate," ","end date ",endDate)
       const apiKey = "aMfMxyiKotndaOeY6qsmZVm5IIQroT1G";
       const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=${startDate}&end_date=${endDate}&q=stock&sort=relevance&api-key=${apiKey}`;
@@ -33,10 +36,18 @@ function FetchNews(props) {
           console.error(err);
         });
     }
+    /* `execute();` is calling the function that fetches news articles from the New York Times API
+    based on the `startDate` and `endDate` props passed to the component. It is being called inside
+    the `useEffect` hook to ensure that the function is executed whenever the `startDate` and
+    `endDate` props change. */
     execute();
+    /* `[props.startDate, props.endDate]);` is passing an array of dependencies to the `useEffect`
+  hook. This means that the effect will only be executed when either `props.startDate` or
+  `props.endDate` changes. This is useful because it ensures that the news articles are only
+  fetched when the date range changes, rather than on every render of the component. */
   }, [props.startDate, props.endDate]);
   
-
+/*below code is just a format in which news api response will be vissible*/
   return (
     <div className="center-div">
       <h1>New York Times Articles</h1>

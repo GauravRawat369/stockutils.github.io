@@ -4,6 +4,10 @@ import Fetchnews from "./Fetchnews";
 // import { useLocation } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
+/**
+ * This is a functional component that sets and manages state values for loading, start and end dates,
+ * and stock chart values.
+ */
 const Analytics = () => {
   const { symbol } = useParams();
   const inputValue = symbol;
@@ -29,12 +33,15 @@ const Analytics = () => {
     }
   };
 
+/**
+ * This function fetches daily adjusted stock data from the Alpha Vantage API and sets the X and Y
+ * values for a stock chart.
+ */
   const fetchStock = async () => {
     const API_KEY = "WP8RSCAZJ8NVA8CF";
     const Stock_Symbol = inputValue;
     // const Stock_Symbol = "ALPHS.PAR"
     console.log(Stock_Symbol);
-    // console.log(4)
     const API_Call_Stock = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${Stock_Symbol}&outputsize=full&apikey=${API_KEY}`;
     try {
       const res_stock = await fetch(API_Call_Stock);
@@ -60,6 +67,10 @@ const Analytics = () => {
     }
   };
 
+/* This code block is using the `useEffect` hook to fetch stock data from the Alpha Vantage API and set
+the X and Y values for a stock chart. It is also checking if the `stockChartXValues` array is empty
+and logging a message to the console if it is. The `useEffect` hook is triggered whenever the
+`symbol` or `inputValue` variables change. */
   useEffect(() => {
     setLoading(true);
     fetchStock();
@@ -69,14 +80,16 @@ const Analytics = () => {
    {
       console.log("data no availabe:")
    }
-  // if (!stockChartXValues.length) {
-  //   return (
-  //     <div className="loading-div">
-  //       <h3>Loading... No data in api </h3>
-  //     </div>
-  //   );
-  // }
 
+/* This is the JSX code that is being returned by the `Analytics` functional component. It is rendering
+a `div` element with a class name of "analytics-div" that contains a `h2` element with the text
+"Stock Market". It also contains a conditional statement that checks if the `loading` state value is
+true or false. If it is true, it renders a loading message. If it is false, it renders a `Plot`
+component from the `react-plotly.js` library with data and layout properties. It also includes an
+`onClick` event handler that calls the `handleClick` function. Additionally, there is another
+conditional statement that checks if `startDate` and `endDate` are defined. If they are, it renders
+a `Fetchnews` component with `startDate` and `endDate` props. If they are not defined, it renders a
+message asking the user to select dates. */
   return (
     <div className="analylics-div">
       <h2>Stock Market</h2>
@@ -116,7 +129,6 @@ const Analytics = () => {
           config={{ displayModeBar: false }}
         />
       )}
-      {/* <Searchsymbol/> */}
       {startDate != undefined && endDate != undefined?(<Fetchnews startDate={startDate} endDate={endDate} />)
       : <h2>pls select the dates</h2>}
 
