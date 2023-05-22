@@ -51,7 +51,7 @@ this code, `useEffect` is used to fetch news articles from the New York Times AP
   return (
     <div className="center-div">
       <h1>New York Times Articles</h1>
-      <div className="loading">{pending && <h2>Select Date</h2>}</div>
+      <div className="loading">{pending && <h2>Fetching your news.....</h2>}</div>
       <ul className="center-div">
         {articles.map((article, index) => (
           <div className="news-card" key={index}>
