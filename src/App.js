@@ -5,6 +5,7 @@ import "./styles/CssSidebar.css";
 // import News from "./components/News";
 import Analytics from "./components/Analytics";
 import { useState } from "react";
+// require('dotenv').config();
 
 function App() {
 
@@ -43,7 +44,7 @@ function TickerSymbolSearch() {
     setSearchTerm(term);
     // Make a request to the Alpha Vintage API using the search term
     // Parse the response and update the suggestions
-    const API_KEY = "WP8RSCAZJ8NVA8CF";
+    const API_KEY = process.env.API_KEY_FOR_ST_DATA_AND_ST_TOCKEN
     const API_Call = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${term}&apikey=${API_KEY}`;
 
     const res = await fetch(API_Call);

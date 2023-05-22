@@ -3,6 +3,8 @@ import Plot from "react-plotly.js";
 import Fetchnews from "./Fetchnews";
 // import { useLocation } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+// require('dotenv').config();
+
 
 /**
  * This is a functional component that sets and manages state values for loading, start and end dates,
@@ -39,7 +41,7 @@ const Analytics = () => {
    * values for a stock chart.
    */
   const fetchStock = async () => {
-    const API_KEY = "WP8RSCAZJ8NVA8CF";
+    const API_KEY = process.env.API_KEY_FOR_ST_DATA_AND_ST_TOCKEN
     const Stock_Symbol = inputValue;
     // const Stock_Symbol = "POLYPLEX.BSE"
     console.log(Stock_Symbol);

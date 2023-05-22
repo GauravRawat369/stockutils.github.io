@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+
 function FetchNews(props) {
   /* `const [articles, setArticles] = useState([]);` initializes a state variable `articles` with an
   empty array and a function `setArticles` to update the state variable. */
@@ -11,9 +12,9 @@ this code, `useEffect` is used to fetch news articles from the New York Times AP
   useEffect(() => {
     function execute() {
       const { startDate, endDate } = props;
-        console.log("inside news start date ",startDate," ","end date ",endDate)
-      const apiKey = "aMfMxyiKotndaOeY6qsmZVm5IIQroT1G";
-      const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=${startDate}&end_date=${endDate}&q=stock&sort=relevance&api-key=${apiKey}`;
+      console.log("inside news start date ",startDate," ","end date ",endDate);
+      const api_Key = "aMfMxyiKotndaOeY6qsmZVm5IIQroT1G"
+      const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=${startDate}&end_date=${endDate}&q=stock&sort=relevance&api-key=${api_Key}`;
       const options = {
         method: "GET",
         headers: {
