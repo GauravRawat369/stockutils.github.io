@@ -19,6 +19,7 @@ const Analytics = () => {
   const [stockChartXValues, setStockChartXValues] = useState([]);
   const [stockChartYValues, setStockChartYValues] = useState([]);
   const [stockChartColors, setStockChartColors] = useState([]);
+  const [apiFetched, setApiFetched] = useState(false);
 
   const handleClick = (data) => {
     if (data.points.length > 0) {
@@ -49,6 +50,7 @@ const Analytics = () => {
     try {
       const res_stock = await fetch(API_Call_Stock);
       const data_stock = await res_stock.json();
+      setApiFetched(true);
       console.log(data_stock);
 
       const stockChartXValuesFunction = [];
@@ -112,22 +114,15 @@ and logging a message to the console if it is. The `useEffect` hook is triggered
 `symbol` or `inputValue` variables change. */
   useEffect(() => {
     setLoading(true);
-    fetchStock();
-  }, [symbol, inputValue]);
+    if (!apiFetched) {
+      fetchStock();
+    }
+  }, [apiFetched]);
 
   if (!stockChartXValues.length) {
     console.log("data no availabe:");
   }
 
-  /* This is the JSX code that is being returned by the `Analytics` functional component. It is rendering
-a `div` element with a class name of "analytics-div" that contains a `h2` element with the text
-"Stock Market". It also contains a conditional statement that checks if the `loading` state value is
-true or false. If it is true, it renders a loading message. If it is false, it renders a `Plot`
-component from the `react-plotly.js` library with data and layout properties. It also includes an
-`onClick` event handler that calls the `handleClick` function. Additionally, there is another
-conditional statement that checks if `startDate` and `endDate` are defined. If they are, it renders
-a `Fetchnews` component with `startDate` and `endDate` props. If they are not defined, it renders a
-message asking the user to select dates. */
   return (
     <div className="analylics-div">
       <h2>Stock Market</h2>
@@ -147,22 +142,9 @@ message asking the user to select dates. */
               line: {
                 color: "#0000FF",
               },
+              name:"stock price",
               fillcolor: "rgba(0, 0, 255, 0.3)",
-              name: "stock values"
             },
-            /* This code block is creating a scatter plot with red markers for the days where the stock
-            pr/* This code block is creating a scatter plot with red markers for days where the stock
-            price has increased by more than 10%. The `x` and `y` values for the scatter plot are
-            filtered using the `filter()` method to only include the values where the
-            corresponding `stockChartColors` array value is "red". The `type` is set to "scatter"
-            and the `mode` is set to "markers". The `marker` object is used to set the color and
-            size of the markers, and the `name` property is used to label the scatter plot as
-            "hikes".
-            ice has increased by more than 10% compared to the previous day. It filters the
-            `stockChartXValues` and `stockChartYValues` arrays based on the `stockChartColors`
-            array, which contains "red" for the days where the stock price has increased by more
-            than 10% and "blue" for the other days. The resulting scatter plot is named "hikes" and
-            has red markers with a size of 8. */
             {
               x: stockChartXValues.filter(
                 (_, i) => stockChartColors[i] === "red"
@@ -176,11 +158,30 @@ message asking the user to select dates. */
                 color: "#FF0000",
                 size: 8,
               },
-              name: "10% hikes or more"
+              name: "10% hikes",
             },
           ]}
+          layout={{
+            autosize: true,
+            legend: {"orientation": "h"},
+            margin: {
+              l: 50,
+              r: 50,
+              b: 50,
+              t: 50,
+            },
+    //         paper_bgcolor:'rgba(0,0,0,0)',
+    // plot_bgcolor:'rgba(0,0,0,0)'
+   
+          }}
           onClick={handleClick}  // for selecting dates
-          config={{ displayModeBar: false }}
+          config={
+            { 
+              displayModeBar: false,
+              responsive:true,
+              maintainAspectRatio	: false
+            }
+          }
         />
       )}
       {startDate !== undefined && endDate !== undefined ? (

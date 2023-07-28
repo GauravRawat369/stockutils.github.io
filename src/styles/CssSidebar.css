@@ -1,4 +1,3 @@
-
 .news-card {
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -147,14 +146,43 @@
     .readme-btn {
       font-size: 12px;
     }
-    .js-plotly-plot {
-        /* Updated styles for smaller devices */
+    /* .js-plotly-plot {
         width: 10%;
         height: 300px;
-    }
+    } */
   }
 /* Styles for devices below 400px */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 580px) {
+  .news-card {
+      height: 120px;
+      width: 95%;
+    }
+  
+    .cover img {
+      height: 90px;
+      width: 86px;
+    }
+
+  .news-title {
+    font-size: 13px;
+  }
+
+  .about-news {
+    font-size: 8px;
+  }
+
+  .news-author {
+    font-size: 11px;
+  }
+
+  .readme-btn {
+    font-size: 8px;
+  }
+} 
+@media only screen and (max-width: 420px) {
+   .center-div h1{
+    font-size: 20px;
+   }
     .news-card {
         height: 120px;
         width: 95%;
@@ -166,18 +194,18 @@
       }
   
     .news-title {
-      font-size: 16px;
+      font-size: 10px;
     }
   
     .about-news {
-      font-size: 12px;
+      font-size: 7px;
     }
   
     .news-author {
-      font-size: 10px;
+      font-size: 8px;
     }
   
     .readme-btn {
-      font-size: 10px;
+      font-size: 7px;
     }
   }  

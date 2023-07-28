@@ -60,10 +60,10 @@ this code, `useEffect` is used to fetch news articles from the New York Times AP
               <h3 className="news-title">{article.headline.main}</h3>
               <p className="about-news">
                 {/* {article.abstract?.substring(0, 90) + "... "} */}
-                {article.snippet}
+                {article.snippet?.substring(0, 90) + "... "} 
               </p>
               <div className="read-more-div">
-                <h4 className="news-author">{article.byline.original?.substring(0, 30)}</h4>
+                <h4 className="news-author">{article.byline.original?.substring(0, 25) + "..."}</h4>
                 <a href={article.web_url} target="_blank" rel="noreferrer">
                   <button className="readme-btn">Read more</button>
                 </a>

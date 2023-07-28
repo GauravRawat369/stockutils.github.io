@@ -1,11 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import "./styles/CssSidebar.css";
-// import Sidebar from "./components/Sidebar";
-// import News from "./components/News";
 import Analytics from "./components/Analytics";
 import { useState } from "react";
-// require('dotenv').config();
 
 function App() {
 
@@ -13,16 +10,14 @@ function App() {
     <div className="main-div">
       <div className="main-body">
         <Router>
-          {/* <Sidebar /> */}
           <div className="content-div">
             <div className="input-field">
               <TickerSymbolSearch />
             </div>
             <Routes>
-              {/* <Route exact path="/news1" element={<News />} /> */}
               <Route
                 exact
-                path="/analytics2/:symbol"
+                path="/analytics/:symbol"
                 element={<Analytics />}
               />
             </Routes>
@@ -49,7 +44,7 @@ function TickerSymbolSearch() {
 
     const res = await fetch(API_Call);
     const data = await res.json();
-
+    console.log(data);
     if (data && data.bestMatches && data.bestMatches.length > 0) {
       setSuggestions(data.bestMatches);
     }
@@ -62,7 +57,7 @@ function TickerSymbolSearch() {
   function handleSuggestionClick(s) {
     const symbol = s["1. symbol"];
     setSymbol(symbol);
-    navigate(`/analytics2/${symbol}`);
+    navigate(`/analytics/${symbol}`);
     setSuggestions([]);
   }
 

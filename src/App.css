@@ -81,21 +81,22 @@
   border-radius: 4px;
   margin-bottom: 5px;
 }
-
+.js-plotly-plot{
+  width: 700px;
+  height: 440px;
+}
 .search-results li:hover {
   background-color: #aea1e7;
 }
-
 /* Media query for devices with a maximum width of 768px */
 @media only screen and (max-width: 768px) {
+  .js-plotly-plot{
+    width: 500px;
+    height: 340px;
+  }
   .main-body {
     flex-direction: column;
   }
-  
-  .content-div {
-    height: auto;
-  }
-  
   .input-div {
     margin-bottom: 10px;
   }
@@ -104,13 +105,58 @@
     font-size: 12px;
   }
 }
+@media only screen and (max-width: 510px) {
+  .js-plotly-plot{
+    width: 450px;
+    height: 340px;
+  }
 
-/* Media query for devices with a maximum width of 400px */
-@media only screen and (max-width: 400px) {
   .text-css {
     font-size: 12px;
   }
   
+  .input-bar {
+    padding: 6px;
+    font-size: 10px;
+  }
+  
+  .search-results li {
+    padding: 3px;
+    margin: 3px 0;
+    font-size: 12px;
+  }
+}
+/* Media query for devices with a maximum width of 400px */
+@media only screen and (max-width: 410px) {
+  .js-plotly-plot{
+    width: 400px;
+    height: 340px;
+  }
+
+  .text-css {
+    font-size: 12px;
+  }
+  
+  .input-bar {
+    padding: 6px;
+    font-size: 10px;
+  }
+  
+  .search-results li {
+    padding: 3px;
+    margin: 3px 0;
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .js-plotly-plot{
+    width: 300px;
+    height: 340px;
+  }
+
+  .text-css {
+    font-size: 12px;
+  }
   .input-bar {
     padding: 6px;
     font-size: 10px;
