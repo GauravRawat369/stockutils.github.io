@@ -113,7 +113,6 @@ the X and Y values for a stock chart. It is also checking if the `stockChartXVal
 and logging a message to the console if it is. The `useEffect` hook is triggered whenever the
 `symbol` or `inputValue` variables change. */
   useEffect(() => {
-    setLoading(true);
     if (!apiFetched) {
       fetchStock();
     }
